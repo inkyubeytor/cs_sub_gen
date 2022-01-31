@@ -1,3 +1,5 @@
+import re
+
 from selector import Selector
 from substitutor import Substitutor
 
@@ -24,4 +26,13 @@ class Pipeline:
         :return: The substituted sentence.
         """
         spans = self.selector(sentence)
-        return self.substitutor(sentence, spans)
+        return self._clean(self.substitutor(sentence, spans))
+
+    @staticmethod
+    def _clean(s: str) -> str:
+        """
+        Cleans spacing of a sentence.
+        :param s: The sentence to clean.
+        :return: The sentence with fixed spacing.
+        """
+        return re.sub("\s+", " ", s).replace(" ,", ",").replace(" .", ".")
