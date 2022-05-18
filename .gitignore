@@ -1,0 +1,4 @@
+data/
+finetune_output_distilbert_tcs/
+finetune_output_tcs/
+*.pyc
